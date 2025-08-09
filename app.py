@@ -14,7 +14,7 @@ def save_current_input(input_value):
     st.session_state[prev_input_key] = input_value
 
 def poker_chip_counter():
-    st.title("チップかぞえチャオ")
+    st.title("チップかぞえチャオ ver1")
 
     selected_item = st.radio(
         'カウントするチップの種類を選択して下さい',
@@ -22,23 +22,6 @@ def poker_chip_counter():
     )
 
     st.write("チップ数を直接入力 or 末尾-+ボタンで設定後、計算ボタンを押下")
-
-    # 入力値の定義とセッションステート管理
-    chip_keys = [
-        "chips_01_cnt",
-        "chips_02_cnt",
-        "chips_11_cnt",
-        "chips_12_cnt",
-        "chips_21_cnt",
-        "chips_22_cnt",
-        "chips_31_cnt",
-        "bb_value"
-    ]
-
-    # セッションステート初期化
-    for key in chip_keys:
-        if key not in st.session_state:
-            st.session_state[key] = 0
 
     #初期値
     chips_01_value = 100
@@ -65,22 +48,14 @@ def poker_chip_counter():
         col_98, col_99 = st.columns([1, 6])
 
         if selected_item == 'JOPT用':
-            # お試し入力保持ロジック
-            chips_01_cnt = col_01.number_input("100点（⚫️黒いチップ）の数", min_value=0, key="chips_01_cnt")
-            chips_02_cnt = col_02.number_input("500点（🟣紫色チップ）の数", min_value=0, key="chips_02_cnt")
-            chips_11_cnt = col_11.number_input("1,000点（🔵青いチップ）の数", min_value=0, key="chips_11_cnt")
-            chips_12_cnt = col_12.number_input("5,000点（🟡黄色チップ）の数", min_value=0, key="chips_12_cnt")
-            chips_21_cnt = col_21.number_input("25,000点（🔴赤いチップ）の数", min_value=0, key="chips_21_cnt")
-            chips_22_cnt = col_22.number_input("100,000点（⚪️赤いチップ）の数", min_value=0, key="chips_22_cnt")
-            chips_31_cnt = col_31.number_input("1,000,000点（薄紫チップ）の数", min_value=0, key="chips_31_cnt")
             # 旧ロジック
-            #chips_01_cnt = col_01.number_input("100点（⚫️黒いチップ）の数", min_value=0, value=0)
-            #chips_02_cnt = col_02.number_input("500点（🟣紫色チップ）の数", min_value=0, value=0)
-            #chips_11_cnt = col_11.number_input("1,000点（🔵青いチップ）の数", min_value=0, value=0)
-            #chips_12_cnt = col_12.number_input("5,000点（🟡黄色チップ）の数", min_value=0, value=0)
-            #chips_21_cnt = col_21.number_input("25,000点（🔴赤いチップ）の数", min_value=0, value=0)
-            #chips_22_cnt = col_22.number_input("100,000点（⚪️赤いチップ）の数", min_value=0, value=0)
-            #chips_31_cnt = col_31.number_input("1,000,000点（薄紫チップ）の数", min_value=0, value=0)
+            chips_01_cnt = col_01.number_input("100点（⚫️黒いチップ）の数", min_value=0, value=0)
+            chips_02_cnt = col_02.number_input("500点（🟣紫色チップ）の数", min_value=0, value=0)
+            chips_11_cnt = col_11.number_input("1,000点（🔵青いチップ）の数", min_value=0, value=0)
+            chips_12_cnt = col_12.number_input("5,000点（🟡黄色チップ）の数", min_value=0, value=0)
+            chips_21_cnt = col_21.number_input("25,000点（🔴赤いチップ）の数", min_value=0, value=0)
+            chips_22_cnt = col_22.number_input("100,000点（⚪️赤いチップ）の数", min_value=0, value=0)
+            chips_31_cnt = col_31.number_input("1,000,000点（薄紫チップ）の数", min_value=0, value=0)
         else:
             chips_01_cnt = col_01.number_input("100点の数", min_value=0, value=0)
             chips_02_cnt = col_02.number_input("500点の数", min_value=0, value=0)
@@ -91,10 +66,8 @@ def poker_chip_counter():
             chips_31_cnt = col_31.number_input("1,000,000点の数", min_value=0, value=0)
 
         # BBの入力フィールド
-        # お試し入力保持ロジック
-        bb_value = col_32.number_input("1BBの点数", min_value=0, step=100, key="bb_value")
         # 旧ロジック
-        #bb_value = col_32.number_input("1BBの点数", min_value=0, value=200, step=100)
+        bb_value = col_32.number_input("1BBの点数", min_value=0, value=200, step=100)
     else:
         col_01, col_02 = st.columns(2)
         col_11, col_12 = st.columns(2)
